@@ -1,5 +1,5 @@
 mwo.smurfy-net.de API documentation
-------------------------------------
+=========================================
 
 The api is based on a RESTFul interface to access data and uses an OAuth2 authentication.
 
@@ -14,19 +14,19 @@ The following data is required to grant a client access:
 * one or more urls back to your site where the oauth authentication will redirect the user to.
 
 NOTE:
-=====
+-----
 
 Normally the interface should only use https!, but i have some problems with ssl right now so please access it http.
 But this will change soon.
 
 The following oauth2 urls/params exists:
-=========================================
+----------------------------------------
 
 Request for user auth:
 https:/mwo.smurfy-net.de/api/oauth2/auth?response_type=code&redirect_uri=XXXX&client_id=NNN
 
 Token requests:
-All token request should be run server to server and the user should never se any of this communication!
+All token request should be run server to server and the user should never see any of this communication!
 
 Access without user interaction but only to non user specific data
 https:/mwo.smurfy-net.de/api/oauth2/token?grant_type=client_credentials&client_id=XXXX&client_secret=YYYYY
@@ -40,7 +40,7 @@ You normally can save both tokens in your database/session for reuse.
 https:/mwo.smurfy-net.de/api/oauth2/token?grant_type=refresh_token&client_id=XXXX&client_secret=YYYYY&refresh_token=NNNN
 
 The following api data urls exists to date:
-============================================
+-------------------------------------------
 
 Each data request needs an "access_token" query param with a valid token.
 
