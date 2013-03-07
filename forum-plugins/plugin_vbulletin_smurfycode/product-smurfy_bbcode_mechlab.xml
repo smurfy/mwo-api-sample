@@ -35,7 +35,6 @@ function smurfy_handle_bbcode(&$registry, $code, $title = null) {
     $html = '';
     $result = preg_match('/i=(\d+)&l=(\w+)/',$url, $matches);
     if($result === 1) {
-        // Example URL: http://mwo.smurfy-net.de/tools/mechtooltip?i=17&l=6eb098ea1a7a393ed703be2f4761b072c0692766
         $html = '<iframe src="http://mwo.smurfy-net.de/tools/mechtooltip?i=' . $matches[1] . '&l=' . $matches[2] . '" width="100%" height="300"></iframe>';
     }
     return $html;
