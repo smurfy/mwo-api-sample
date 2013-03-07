@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE extension>
+<extension version="2.5" type="plugin" group="kunena" method="upgrade">
+	<name>plg_kunena_smurfycode</name>
+	<version>1.0.0</version>
+	<creationDate>2013-03-06</creationDate>
+	<author>Rex "SaintPeter" Schrader</author>
+	<authorEmail>rex.schrader@gmail.com</authorEmail>
+	<authorUrl>http://1st-rangers.com</authorUrl>
+	<copyright>Rex Schrader</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<description>Adds [smurfy] BBCode to Kunena Forums</description>
+	<files>
+		<filename plugin="smurfycode">smurfycode.php</filename>
+		<filename>index.html</filename>
+		<filename>license.txt</filename>
+		<folder>images</folder>
+	</files>
+	<config>
+	</config>
+</extension>
