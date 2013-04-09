@@ -3,7 +3,7 @@
 <product productid="smurfy_bbcode_mechlab" active="1">
     <title><![CDATA[smurfy mechlab BBCode]]></title>
     <description><![CDATA[Adds [smurfy] BBCode to Vbulletin]]></description>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <url>http://mwo.smurfy-net.de</url>
     <versioncheckurl />
     <dependencies>
@@ -18,55 +18,38 @@
             <title>Strip tag in previews etc</title>
             <hookname>strip_bbcode</hookname>
             <phpcode><![CDATA[
-
 $block_elements[] = 'smurfy';
-
             ]]></phpcode>
-        </plugin>
-        <plugin active="1" executionorder="5">
-            <title>Creation of the tag itself in the bbcodecache</title>
-            <hookname>bbcode_create</hookname>
-            <phpcode><![CDATA[
-
-$this->unparsed_tags[] = 'smurfy';
-
-function smurfy_handle_bbcode(&$registry, $code, $title = null) {
-	$url = $registry->strip_front_back_whitespace($code, 1);
-    $html = '';
-    $result = preg_match('/i=(\d+)&l=(\w+)/',$url, $matches);
-    if($result === 1) {
-        $html = '<iframe src="http://mwo.smurfy-net.de/tools/mechtooltip?i=' . $matches[1] . '&l=' . $matches[2] . '" width="100%" height="300"></iframe>';
-    }
-    return $html;
-}
-
-]]></phpcode>
         </plugin>
         <plugin active="1" executionorder="5">
             <title>fetch proper bbcode tags</title>
             <hookname>bbcode_fetch_tags</hookname>
             <phpcode><![CDATA[
-
 $tag_list['no_option']['smurfy'] = array(
-	'callback' => 'handle_external',
-	'strip_empty' => true,
-	'stop_parse' => true,
-	'disable_smilies' => true,
-	'disable_wordwrap' => true,
-	'strip_space_after' => 2,
-	'external_callback' => 'smurfy_handle_bbcode'
+    'callback' => 'handle_external',
+    'disable_wordwrap' => true,
+    'strip_empty' => true,
+    'disable_smilies' => true,
+    'external_callback' => 'handle_smurfy_bbcode'
 );
-
-$tag_list['option']['smurfy'] = array(
-	'callback' => 'handle_external',
-	'strip_empty' => true,
-	'stop_parse' => true,
-	'disable_smilies' => true,
-	'disable_wordwrap' => true,
-	'strip_space_after' => 2,
-	'external_callback' => 'smurfy_handle_bbcode'
-);
-
+if(!function_exists('handle_smurfy_bbcode')) {
+    function handle_smurfy_bbcode(&$parsed, $value) {
+        $url = html_entity_decode($value);
+        $result = preg_match('/i=(\d+)&l=(\w+)/',$url, $matches);
+        $html = '';
+        if($result === 1) {
+            $html = '<iframe src="http://mwo.smurfy-net.de/tools/mechtooltip?i=' . $matches[1] . '&l=' . $matches[2] . '" width="100%" height="300"></iframe>';
+        }
+        return $html;
+    }
+}
+]]></phpcode>
+</plugin>
+        <plugin active="1" executionorder="5">
+            <title>fetch proper bbcode tags</title>
+            <hookname>bbcode_create</hookname>
+            <phpcode><![CDATA[
+$this->unparsed_tags[] = 'smurfy';
 ]]></phpcode>
         </plugin>
     </plugins>
