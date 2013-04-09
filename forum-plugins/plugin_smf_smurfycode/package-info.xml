@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<id>smurfy:MwoMechlab</id>
+	<name>smurfy - Mwo Mechlab BBC</name>
+	<version>1.0</version>
+	<type>modification</type>
+	<install for="2.0 - 2.0.99">
+		<readme parsebbc="true">files/readme.txt</readme>
+		<!-- Sources Dir -->
+		<require-file name="files/smurfyMechlab.php" destination="$sourcedir" />
+        <!-- Images Dir -->
+        <require-file name="files/smurfy.gif" destination="$imagesdir/bbc" />
+		<code>db_files/code_install.php</code>
+		<redirect url="$scripturl?action=admin;area=packages" timeout="1000"></redirect>
+	</install>
+	<uninstall for="2.0 - 2.0.99">
+		<readme parsebbc="true">files/readme.txt</readme>
+		<!-- Sources Dir -->
+		<remove-file name="$sourcedir/smurfyMechlab.php" />
+        <!-- Images Dir -->
+        <remove-file name="$imagesdir/bbc/smurfy.gif" />
+		<redirect url="$scripturl?action=admin;area=packages" timeout="1000"></redirect>
+		<code>db_files/code_uninstall.php</code>
+	</uninstall>
+</package-info>
