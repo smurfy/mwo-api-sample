@@ -8,12 +8,15 @@ Config:
 --------
 
 BB-Code:
-	[smurfy]{INTTEXT1}&L={INTTEXT2}[/smurfy]
+
+    [smurfy]{INTTEXT1}&L={INTTEXT2}[/smurfy]
 
 HTML-Replacement:
-	<iframe src="http://mwo.smurfy-net.de/tools/mechtooltip?i={INTTEXT1}&l={INTTEXT2}" width="100%" height="300" border="0"></iframe>
+
+    <iframe src="http://mwo.smurfy-net.de/tools/mechtooltip?i={INTTEXT1}&l={INTTEXT2}" width="100%" height="300" border="0"></iframe>
 Tooltip:
-	Insert the Code after "http://mwo.smurfy-net.de/mechlab#i="
+
+    Insert the Code after "http://mwo.smurfy-net.de/mechlab#i="
 
 Usage:
 -------
