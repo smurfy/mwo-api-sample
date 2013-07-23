@@ -19,4 +19,4 @@ Tooltip:
 
 Usage:
 -------
-[smurfy]http://mwo.smurfy-net.de/mechlab#i=17&l=351f8b1c193fe77a4e723872124f26a012f90ea2[/smurfy]
+    [smurfy]http://mwo.smurfy-net.de/mechlab#i=17&l=351f8b1c193fe77a4e723872124f26a012f90ea2[/smurfy]
