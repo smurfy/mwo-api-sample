@@ -15,7 +15,7 @@ HTML-Replacement:
     <iframe src="http://mwo.smurfy-net.de/tools/mechtooltip?i={SIMPLETEXT1}&l={SIMPLETEXT2}"width="100%" height="300" border="0"></iframe>
 Tooltip:
 
-    Copy the entire sumurfy mech link.
+    Copy the entire smurfy mech link.
 
 Usage:
 -------
