@@ -4,20 +4,43 @@ mwo.smurfy-net.de API documentation
 The api is based on a RESTFul interface to access data and uses an OAuth2 authentication.
 
 Before you can use the API you need a valid client_id and client_secret for oauth2.
-Which could be requested by writing an pm to smurfynet in the mwomercs.com forums or an email to mwostats@smurfy.de
+Send me a request via PM on the mwomercs.com form, username "smurfynet" or via email to mwostats@smurfy.de
 
-The following data is required to grant a client access:
+Send the following data to request client access:
 
-* email
-* a name of your application (which will be shown to the user)
-* a short description about your application (which will be also shown to the user)
-* one or more urls back to your site where the oauth authentication will redirect the user to.
+* E-mail Address
+* Application Name  
+The name of your application, displayed on the user autorization screen
+* Application Description  
+A short description of what your application does, displayed on the user authorization screen
+* Redirect URI(s)  
+One or more urls back to your site for Oauth User autorization.  Users will be redirected back to this location if they allow your application to access their data.
 
 NOTE:
 -----
 
-Normally the interface should only use https!, but i have some problems with ssl right now so please access it http.
+Normally the interface should only use https!, but I have some problems with SSL right now so please access it http.
 But this will change soon.
+
+About oauth2 Access Tokens:
+---------------------------
+In order to make API requests to the Mechlab, you must have a valid access token.  These tokens are retrieved from the Smurfy Oauth provider.  You send your client_id and client_secret and recieve a JSON formated reply which contains the access token.
+
+There are two classes of Oauth tokens avalible: 
+Generic and User Specific
+
+**Generic Tokens**  
+These can be retrieved without any user interaction, requiring only a client_id and client_secret provided by smurfy above.  The majority of requests can be completed with a generic token.
+
+**User Specific Tokens**  
+These tokens require the user to authorize your application to access their smurfy profile.  
+
+The process requires 3 steps:
+
+1. Construct an authorization URL to the smurf site which the user must click on
+2. The user will click the "Allow" button which will redirect back to your provided redirect_uri
+3. With the code provided on the end of your redirect uri you will request an access token
+
 
 The following oauth2 urls/params exists:
 ----------------------------------------
@@ -53,22 +76,21 @@ Each data request needs an "access_token" query param with a valid token.
 
 FORMAT can be "json" or "xml"
 
-Request list of mechs
+**MECHID** is an integer which refers to a specific chassis/varient  
+**LOADOUTID** is an 40 character string which uniquely identifies a loadout for a chassis/varient
 
+**Generic Token Requests**  
++ Request list of all mechs  
 https:/mwo.smurfy-net.de/api/data/mechs.FORMAT
++ Request a specific mech by Mech ID  
+https:/mwo.smurfy-net.de/api/data/mechs/MECHID.FORMAT
++ Request a stock mech loadout by Mech ID  
+https:/mwo.smurfy-net.de/api/data/mechs/MECHID/loadouts/stock.FORMAT
++ Request a mech loadout by Mech and Loadout ID  
+https:/mwo.smurfy-net.de/api/data/mechs/MECHID/loadouts/LOADOUTID.FORMAT
 
-Request a specific mech by id
-
-https:/mwo.smurfy-net.de/api/data/mechs/ID.FORMAT
-
-Request a mech loadout by ids
-
-https:/mwo.smurfy-net.de/api/data/mechs/ID/loadouts/LOADOUTID.FORMAT
-
-Request user details (currently only username)
-
+**User Token Requests**  
++ Request user details (currently only username)  
 https:/mwo.smurfy-net.de/api/data/user/details.FORMAT
-
-Request users mechbay
-
++ Request users mechbay  
 https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
