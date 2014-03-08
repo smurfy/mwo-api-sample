@@ -8,64 +8,25 @@
 
 $options = array(
     'host' => 'http://mwo.smurfy-net.de/api/',
-    'format' => 'json', //or xml
-    //You will receive client_id and client_secret by sending a pm in the mwomercs.com forums (smurfynet)
-    'client_id' => '',
-    'client_secret' => '',
+    'users-api-key' => 'put your api key here!',
 );
 
-switch ($_GET['s']) {
-    case 'srvonly':
-        //First we need to get an access_token for oauth2 based on our credentials alone
-        $req = array(
-            'grant_type' => 'client_credentials',
-            'client_id' => $options['client_id'],
-            'client_secret' => $options['client_secret'],
-        );
-        $tokenJson = curlhelper($options['host'] . 'oauth2/token?' . http_build_query($req));
-        $token = json_decode($tokenJson);
-        if (property_exists($token, 'error')) {
-            die('An error occured:' . htmlentities($token->error_description));
-        }
-        //Now we got a access_token we send a request to the server to get the stock loadout of the atlas d-dc
-        $data = curlhelper($options['host'] . 'data/mechs/17/loadouts/stock.' . $options['format'] . '?access_token=' . $token->access_token);
-        print '<pre>';
-        var_dump(json_decode($data));
+$s = isset($_GET['s']) ? $_GET['s'] : '';
+
+switch ($s) {
+    case 'loadout':
+        $data = curlhelper($options['host'] . 'data/mechs/17/loadouts/stock.json');
+	    print '<pre>';
+            var_dump(json_decode($data));
         print '</pre>';
         break;
-    case 'users':
-        //Setp on ask user for permission
-        $req = array(
-            'response_type' => 'code',
-            'redirect_uri' => $_SERVER['SCRIPT_URI'] . '?s=users2',
-            'client_id' => $options['client_id'],
-        );
-        $url = $options['host'] . 'oauth2/auth?' . http_build_query($req);
-        echo <<< EOF
-        We need the users permission to get the mechbay so we ask oauth2 to ask for it.
-
-        <a href="$url">Click here to authorise!</a>
-EOF;
+    case 'postloadout':
+        $data = curlhelper($options['host'] . 'data/mechs/17/loadouts/stock.json');
+        $ret = curlhelper($options['host'] . 'data/mechs/17/loadouts.json', $data);
+        var_dump($ret);
         break;
-    case 'users2':
-        if (isset($_GET['error'])) {
-            die('An error occured:' . htmlentities($_GET['error_description']));
-        }
-        //Step two we need to get an access_token for oauth2 based on the code we got
-        $req = array(
-            'grant_type' => 'authorization_code',
-            'client_id' => $options['client_id'],
-            'client_secret' => $options['client_secret'],
-            'code' => $_GET['code'],
-            'redirect_uri' => $_SERVER['SCRIPT_URI'] . '?s=users2',
-        );
-        $tokenJson = curlhelper($options['host'] . 'oauth2/token?' . http_build_query($req));
-        $token = json_decode($tokenJson);
-        if (property_exists($token, 'error')) {
-            die('An error occured:' . $token->error_description);
-        }
-        //Now we got a access_token we send a request to the server to get the users mechbay
-        $data = curlhelper($options['host'] . 'data/user/mechbay.' . $options['format'] . '?access_token=' . $token->access_token);
+    case 'mechbay':
+        $data = curlhelper($options['host'] . 'data/user/mechbay.json', null, $options['users-api-key']);
         print '<pre>';
         var_dump(json_decode($data));
         print '</pre>';
@@ -80,16 +41,24 @@ EOF;
         </p>
 
         <ul>
-            <li><a href="?s=srvonly">Access to mechlab but not to user</a></li>
-            <li><a href="?s=users">Access to mechlab with access to users mechbay</a></li>
+            <li><a href="?s=loadout">Access a loadout from the server</a></li>
+            <li><a href="?s=postloadout">Send a new loadout to the server</a></li>
+            <li><a href="?s=mechbay">Access a users mechbay (you need to set the api-key)</a></li>
         </ul>
 EOF;
         break;
 }
 
-function curlhelper($url)
+function curlhelper($url, $post = null, $apiKey = null)
 {
     $curl = curl_init();
+    if (!empty($apiKey)) {
+        curl_setopt($curl,CURLOPT_HTTPHEADER, array('Authorization: APIKEY ' . $apiKey));
+    }
+    if (!empty($post)) {
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $post);
+    }
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER ,true);
     $response = curl_exec($curl);
