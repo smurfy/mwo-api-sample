@@ -7,7 +7,7 @@
  */
 
 $options = array(
-    'host' => 'http://mwo.smurfy-net.de/api/',
+    'host' => 'https://mwo.smurfy-net.de/api/', //Only user related stuff needs https but its easier to use it everywhere
     'users-api-key' => 'put your api key here!',
 );
 
