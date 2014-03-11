@@ -41,8 +41,8 @@ Available API Commands:
 
 * Request user details (Requires API-KEY)
 
-  GET http:/mwo.smurfy-net.de/api/data/user/details.FORMAT
+  GET https:/mwo.smurfy-net.de/api/data/user/details.FORMAT
 
 * Request users mechbay (Requires API-KEY)
 
-  GET http:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
+  GET https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
