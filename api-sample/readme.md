@@ -14,23 +14,35 @@ The API-KEY:
 The user needs to provide the api key. The api key unique for the user is access-able after login.
 Via: http:/mwo.smurfy-net.de/change-password
 
+The Application needs to put the API-KEY to the http request Header.
+
+Example:
+
+    Authorization: APIKEY b0513c7be3e7184b66112a0157d6d267208857d5
+
 Available API Commands:
 ------------------------
 
 * Request list of mechs
+
   GET http:/mwo.smurfy-net.de/api/data/mechs.FORMAT
 
 * Request a specific mech by id
+
   GET http:/mwo.smurfy-net.de/api/data/mechs/ID.FORMAT
 
 * Request a mech loadout by ids
+
   GET http:/mwo.smurfy-net.de/api/data/mechs/ID/loadouts/LOADOUTID.FORMAT
 
 * Send new loadout to server
+
   POST http:/mwo.smurfy-net.de/api/data/mechs/ID/loadouts.FORMAT
 
 * Request user details (Requires API-KEY)
-  GET http:/mwo.smurfy-net.de/api/data/user/details.FORMAT
+
+  GET https:/mwo.smurfy-net.de/api/data/user/details.FORMAT
 
 * Request users mechbay (Requires API-KEY)
-  GET http:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
+
+  GET https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
