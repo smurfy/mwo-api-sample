@@ -23,6 +23,10 @@ Example:
 Available API Commands:
 ------------------------
 
+* Request price list of almost all game objects (mechs, items..)
+
+  GET http:/mwo.smurfy-net.de/api/data/prices.FORMAT
+
 * Request list of mechs
 
   GET http:/mwo.smurfy-net.de/api/data/mechs.FORMAT
