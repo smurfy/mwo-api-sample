@@ -60,9 +60,14 @@ Available API Commands:
 
   Body: One single mechbay entry. most values are ignored. used ones are ```.name``` (new name) ```.loadout.id``` and ```.loadout.mechId```
 
-* Add or remove one or more mechs to mechbay Requires API-KEY)
+* Add or remove one or more mechs to mechbay (Requires API-KEY)
 
+  Add:
+  
   LINK https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
+  
+  Remove:
+  
   UNLINK https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
   
   Custom request header example: 
