@@ -27,6 +27,22 @@ Available API Commands:
 
   GET http:/mwo.smurfy-net.de/api/data/prices.FORMAT
 
+* Request list of modules
+
+  GET http://mwo.smurfy-net.de/api/data/modules.FORMAT
+  
+* Request list of weapons
+
+  GET http://mwo.smurfy-net.de/api/data/weapons.FORMAT
+  
+* Request list of ammo
+
+  GET http://mwo.smurfy-net.de/api/data/ammo.FORMAT
+  
+* Request list of omnipods
+
+  GET http://mwo.smurfy-net.de/api/data/omnipods.FORMAT
+  
 * Request list of mechs
 
   GET http:/mwo.smurfy-net.de/api/data/mechs.FORMAT
@@ -72,7 +88,7 @@ Available API Commands:
   
   Custom request header example: 
   
-    Link: </api/data/mechs/150/loadouts/837a3eaf04d321aff5922859c451bcf21ed1114b.json>
+    Link: </api/data/mechs/150/loadouts/837a3eaf04d321aff5922859c451bcf21ed1114b>
     
   You can add or remove more than one mech at the same time by separating multiple IRL by a comma (,)
   The method always returns a 204 http status and adds all successfully added or removed links to the response header.
