@@ -42,6 +42,9 @@ Available API Commands:
 * Send new loadout to server
 
   POST http:/mwo.smurfy-net.de/api/data/mechs/ID/loadouts.FORMAT
+  
+  Body: format like received on a GET
+  
 
 * Request user details (Requires API-KEY)
 
@@ -50,3 +53,24 @@ Available API Commands:
 * Request users mechbay (Requires API-KEY)
 
   GET https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
+  
+* Update users mechbay mech name (Requires API-KEY)
+
+  PUT https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
+
+  Body: One single mechbay entry. most values are ignored. used ones are ```.name``` (new name) ```.loadout.id``` and ```.loadout.mechId```
+
+* Add or remove one or more mechs to mechbay Requires API-KEY)
+
+  LINK https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
+  UNLINK https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
+  
+  Custom request header example: 
+  
+    Link: </api/data/mechs/150/loadouts/837a3eaf04d321aff5922859c451bcf21ed1114b.json>
+    
+  You can add or remove more than one mech at the same time by separating multiple IRL by a comma (,)
+  The method always returns a 204 http status and adds all successfully added or removed links to the response header.
+  
+  More infos: https://tools.ietf.org/html/rfc5988
+  
