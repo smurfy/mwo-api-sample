@@ -25,54 +25,54 @@ Available API Commands:
 
 * Request price list of almost all game objects (mechs, items..)
 
-  GET http:/mwo.smurfy-net.de/api/data/prices.FORMAT
+  ```GET http:/mwo.smurfy-net.de/api/data/prices.FORMAT```
 
 * Request list of modules
 
-  GET http://mwo.smurfy-net.de/api/data/modules.FORMAT
+  ```GET http://mwo.smurfy-net.de/api/data/modules.FORMAT```
   
 * Request list of weapons
 
-  GET http://mwo.smurfy-net.de/api/data/weapons.FORMAT
+  ```GET http://mwo.smurfy-net.de/api/data/weapons.FORMAT```
   
 * Request list of ammo
 
-  GET http://mwo.smurfy-net.de/api/data/ammo.FORMAT
+  ```GET http://mwo.smurfy-net.de/api/data/ammo.FORMAT```
   
 * Request list of omnipods
 
-  GET http://mwo.smurfy-net.de/api/data/omnipods.FORMAT
+  ```GET http://mwo.smurfy-net.de/api/data/omnipods.FORMAT```
   
 * Request list of mechs
 
-  GET http:/mwo.smurfy-net.de/api/data/mechs.FORMAT
+  ```GET http:/mwo.smurfy-net.de/api/data/mechs.FORMAT```
 
 * Request a specific mech by id
 
-  GET http:/mwo.smurfy-net.de/api/data/mechs/ID.FORMAT
+  ```GET http:/mwo.smurfy-net.de/api/data/mechs/ID.FORMAT```
 
 * Request a mech loadout by ids
 
-  GET http:/mwo.smurfy-net.de/api/data/mechs/ID/loadouts/LOADOUTID.FORMAT
+  ```GET http:/mwo.smurfy-net.de/api/data/mechs/ID/loadouts/LOADOUTID.FORMAT```
 
 * Send new loadout to server
 
-  POST http:/mwo.smurfy-net.de/api/data/mechs/ID/loadouts.FORMAT
+  ```POST http:/mwo.smurfy-net.de/api/data/mechs/ID/loadouts.FORMAT```
   
   Body: format like received on a GET
   
 
 * Request user details (Requires API-KEY)
 
-  GET https:/mwo.smurfy-net.de/api/data/user/details.FORMAT
+  ```GET https:/mwo.smurfy-net.de/api/data/user/details.FORMAT```
 
 * Request users mechbay (Requires API-KEY)
 
-  GET https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
+  ```GET https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT```
   
 * Update users mechbay mech name (Requires API-KEY)
 
-  PUT https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
+  ```PUT https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT```
 
   Body: One single mechbay entry. most values are ignored. used ones are ```.name``` (new name) ```.loadout.id``` and ```.loadout.mechId```
 
@@ -80,15 +80,15 @@ Available API Commands:
 
   Add:
   
-  LINK https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
+  ```LINK https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT```
   
   Remove:
   
-  UNLINK https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT
+  ```UNLINK https:/mwo.smurfy-net.de/api/data/user/mechbay.FORMAT```
   
   Custom request header example: 
   
-    Link: </api/data/mechs/150/loadouts/837a3eaf04d321aff5922859c451bcf21ed1114b>
+    ```Link: </api/data/mechs/150/loadouts/837a3eaf04d321aff5922859c451bcf21ed1114b>```
     
   You can add or remove more than one mech at the same time by separating multiple IRL by a comma (,)
   The method always returns a 204 http status and adds all successfully added or removed links to the response header.
